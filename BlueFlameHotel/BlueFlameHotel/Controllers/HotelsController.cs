@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BlueFlameHotel.Data;
 using BlueFlameHotel.Models;
+using BlueFlameHotel.Models.Interfaces;
+using BlueFlameHotel.Models.Services;
 
 namespace BlueFlameHotel.Controllers
 {
@@ -15,39 +17,26 @@ namespace BlueFlameHotel.Controllers
     public class HotelsController : ControllerBase
     {
         private readonly BlueFlameHotelContext _context;
+        private readonly IHotel _hotel;
 
-        public HotelsController(BlueFlameHotelContext context)
+        public HotelsController(BlueFlameHotelContext context, IHotel hotel)
         {
             _context = context;
+            _hotel = hotel;
         }
 
         // GET: api/Hotels
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hotel>>> GetHotel_1()
+        public async Task<ActionResult<IEnumerable<Hotel>>> GetHotel()
         {
-          if (_context.Hotel_1 == null)
-          {
-              return NotFound();
-          }
-            return await _context.Hotel_1.ToListAsync();
+            return await _hotel.GetHotel();
         }
 
         // GET: api/Hotels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Hotel>> GetHotel(int id)
         {
-          if (_context.Hotel_1 == null)
-          {
-              return NotFound();
-          }
-            var hotel = await _context.Hotel_1.FindAsync(id);
-
-            if (hotel == null)
-            {
-                return NotFound();
-            }
-
-            return hotel;
+            return await  _hotel.GetHotel(id);
         }
 
         // PUT: api/Hotels/5
@@ -59,25 +48,7 @@ namespace BlueFlameHotel.Controllers
             {
                 return BadRequest();
             }
-            //Update model with hotel data
-            _context.Entry(hotel).State = EntityState.Modified;
-
-            try
-            {
-                //Save data changes
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!HotelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _hotel.PutHotel(id, hotel);
 
             return NoContent();
         }
@@ -86,16 +57,11 @@ namespace BlueFlameHotel.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
 
-        //Making a new hotel
+
         public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
         {
-          if (_context.Hotel_1 == null)
-          {
-              return Problem("Entity set 'BlueFlameHotelContext.Hotel_1'  is null.");
-          }
-            _context.Hotel_1.Add(hotel);
-            await _context.SaveChangesAsync();
-
+          
+          await _hotel.PostHotel(hotel);
             return CreatedAtAction("GetHotel", new { id = hotel.ID }, hotel);
         }
 
@@ -103,25 +69,13 @@ namespace BlueFlameHotel.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHotel(int id)
         {
-            if (_context.Hotel_1 == null)
-            {
-                return NotFound();
-            }
-            var hotel = await _context.Hotel_1.FindAsync(id);
-            if (hotel == null)
-            {
-                return NotFound();
-            }
-
-            _context.Hotel_1.Remove(hotel);
-            await _context.SaveChangesAsync();
-
+            _hotel.DeleteHotel(id);
             return NoContent();
         }
 
         private bool HotelExists(int id)
         {
-            return (_context.Hotel_1?.Any(e => e.ID == id)).GetValueOrDefault();
+            return _hotel.HotelExists(id);
         }
     }
 }

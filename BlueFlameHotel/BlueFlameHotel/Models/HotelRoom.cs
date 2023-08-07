@@ -16,5 +16,9 @@ namespace BlueFlameHotel.Models
         [Required]
         public double Price { get; set; }
 
+        //Hotel navigation properties
+        public Hotel Hotel { get; set; }
+        public Room room { get; set; }
+
     }
 }

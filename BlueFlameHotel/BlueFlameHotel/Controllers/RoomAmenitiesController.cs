@@ -59,11 +59,12 @@ namespace BlueFlameHotel.Controllers
             {
                 return BadRequest();
             }
-
+            //Update room amenities data
             _context.Entry(roomAmenities).State = EntityState.Modified;
 
             try
             {
+                //Save data changes
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -84,6 +85,8 @@ namespace BlueFlameHotel.Controllers
         // POST: api/RoomAmenities
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+
+        //Making new room amenities
         public async Task<ActionResult<RoomAmenities>> PostRoomAmenities(RoomAmenities roomAmenities)
         {
           if (_context.RoomAmenities_1 == null)
