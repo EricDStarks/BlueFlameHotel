@@ -25,21 +25,22 @@ namespace BlueFlameHotel.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetRoom()
         {
-          if (_context.Room == null)
-          {
-              return NotFound();
-          }
-            return await _context.Room.ToListAsync();
+            if (_context.Room == null)
+            {
+                return NotFound();
+            }
+            return await _context.Room.Include(room => room.HotelRooms).ThenInclude(HotelRoom => HotelRoom.Hotel).Include(room => room.RoomAmenities).ThenInclude(roomamenities => roomamenities.Amenities).ToListAsync();
+            //return await _context.Room.ToListAsync();
         }
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Room>> GetRoom(int id)
         {
-          if (_context.Room == null)
-          {
-              return NotFound();
-          }
+            if (_context.Room == null)
+            {
+                return NotFound();
+            }
             var room = await _context.Room.FindAsync(id);
 
             if (room == null)
@@ -69,7 +70,7 @@ namespace BlueFlameHotel.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RoomExists(id))
+                if (RoomExists(id))
                 {
                     return NotFound();
                 }
@@ -89,39 +90,75 @@ namespace BlueFlameHotel.Controllers
         //Making new hotel room layouts
         public async Task<ActionResult<Room>> PostRoom(Room room)
         {
-          if (_context.Room == null)
-          {
-              return Problem("Entity set 'BlueFlameHotelContext.Room'  is null.");
-          }
+            if (_context.Room == null)
+            {
+                return Problem("Entity set 'BlueFlameHotelContext.Room'  is null.");
+            }
             _context.Room.Add(room);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetRoom", new { id = room.ID }, room);
         }
 
-        // DELETE: api/Rooms/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRoom(int id)
+        [HttpPost]
+        [Route("{roomId}/Amenity/{amenityId}")]
+        public async Task<IActionResult> PostAmenitiesToRoom(int AmenitiesID, int roomID)
         {
-            if (_context.Room == null)
+            if (_context.RoomAmenities == null)
             {
-                return NotFound();
+                return Problem("Entity set 'BlueFlameHotelContext.Room'  is null.");
             }
-            var room = await _context.Room.FindAsync(id);
+            var amenities = await _context.Amenities.FindAsync(AmenitiesID);
+            if (amenities == null)
+            {
+                return Problem("No amenities with that ID exist");
+            }
+            var room = _context.Room.FindAsync(roomID);
+            RoomAmenities roomAmenities = new RoomAmenities();
             if (room == null)
             {
-                return NotFound();
+                return Problem("No room with that ID exist");
+            }
+            RoomAmenities newRA;
+
+            try
+            {
+                newRA = _context.RoomAmenities.Add(new RoomAmenities { Amenities = amenities, RoomsID = roomID }).Entity;
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                await _context.SaveChangesAsync();
+            }
+            return CreatedAtAction("Post Amenities to room", RoomExists) ;
+        }
+
+            // DELETE: api/Rooms/5
+            [HttpDelete("{id}")]
+            public async Task<IActionResult> DeleteRoom(int id)
+            {
+                if (_context.Room == null)
+                {
+                    return NotFound();
+                }
+                var room = await _context.Room.FindAsync(id);
+                if (room == null)
+                {
+                    return NotFound();
+                }
+
+                _context.Room.Remove(room);
+                await _context.SaveChangesAsync();
+
+                return NoContent();
             }
 
-            _context.Room.Remove(room);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            private bool RoomExists(int id)
+            {
+                return (_context.Room?.Any(e => e.ID == id)).GetValueOrDefault();
+            }
         }
-
-        private bool RoomExists(int id)
-        {
-            return (_context.Room?.Any(e => e.ID == id)).GetValueOrDefault();
-        }
-    }
-}
+    } 
