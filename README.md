@@ -1,1 +1,2 @@
 # BlueFlameHotel
+In this project, we will be refactoring the existing codebase to implement the concept of dependency injection while keeping the current behavior of the API server unchanged. Dependency injection is a design pattern that promotes loose coupling between components and enhances the modularity and testability of your application. By following this pattern, we aim to make our codebase more maintainable, flexible, and extensible.
