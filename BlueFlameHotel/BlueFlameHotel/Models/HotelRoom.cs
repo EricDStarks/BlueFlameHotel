@@ -18,7 +18,7 @@ namespace BlueFlameHotel.Models
 
         //Hotel navigation properties
         public Hotel Hotel { get; set; }
-        public Room room { get; set; }
+        public Room Room { get; set; }
 
     }
 }

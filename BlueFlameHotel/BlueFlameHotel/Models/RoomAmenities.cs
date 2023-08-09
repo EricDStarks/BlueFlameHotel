@@ -10,11 +10,11 @@ namespace BlueFlameHotel.Models
         [Required]
         public int RoomsID { get; set; }
         
-        [Required]
+ 
         public int AmenityID { get; set;}
 
         public Room Room { get; set; }
 
-        public Amenities Amenities { get; set; }
+       public Amenities Amenities { get; set; }
     }
 }

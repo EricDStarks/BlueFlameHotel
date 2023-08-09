@@ -13,10 +13,8 @@ namespace BlueFlameHotel.Models
         [Required]  
         public int Layout { get; set; }
 
-        [Required]
-        public List<HotelRoom> HotelRooms { get; set; }
+        public List<HotelRoom>? HotelRooms { get; set; }
 
-        [Required]
-        public List<Amenities> Amenities { get; set; }  
+        public List<RoomAmenities>? RoomAmenities { get; set; }  
     }
 }

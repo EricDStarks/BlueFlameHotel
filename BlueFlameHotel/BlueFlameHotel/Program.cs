@@ -1,4 +1,6 @@
 using BlueFlameHotel.Data;
+using BlueFlameHotel.Models.Interfaces;
+using BlueFlameHotel.Models.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,7 +17,7 @@ namespace BlueFlameHotel
 
             /*builder.Services.addContext*/
             builder.Services.AddDbContext<BlueFlameHotelContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+            builder.Services.AddTransient<IHotel, HotelService>();
             //app.MapGet("/", () => "Welcome to the Blue Flame Hotel!");
             var app = builder.Build();
             
