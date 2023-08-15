@@ -16,8 +16,8 @@ namespace BlueFlameHotel.Models.Services
         public async Task<IActionResult> DeleteHotel(int id)
         {
             //Former hotel conroller functionality
-            var hotel = await _context.Hotel.FindAsync(id);
-            _context.Hotel.Remove(hotel);
+            var hotel = await _context.BlueFlameHotel.FindAsync(id);
+            _context.BlueFlameHotel.Remove(hotel);
             await _context.SaveChangesAsync();
             //End
             return null; //Returning nothing to the controller and no content to the user
@@ -27,23 +27,23 @@ namespace BlueFlameHotel.Models.Services
         public async Task<ActionResult<Hotel>> GetHotel(int id)
         {
             
-            return await _context.Hotel.FindAsync();
+            return await _context.BlueFlameHotel.FindAsync();
         }
 
         public async Task<IEnumerable<Hotel>> GetHotel()
         {
-            var hotels = _context.Hotel.ToList();
+            var hotels = _context.BlueFlameHotel.ToList();
             return hotels;
         }
 
         public bool HotelExists(int id)
         {
-            return _context.Hotel.Any(e => e.ID == id);
+            return _context.BlueFlameHotel.Any(e => e.ID == id);
         }
 
         public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
         {
-            _context.Hotel.Add(hotel);
+            _context.BlueFlameHotel.Add(hotel);
             await _context.SaveChangesAsync();
             return hotel;
         }

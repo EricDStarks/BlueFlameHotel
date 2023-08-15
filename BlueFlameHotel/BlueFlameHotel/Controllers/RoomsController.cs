@@ -16,11 +16,12 @@ namespace BlueFlameHotel.Controllers
     public class RoomsController : ControllerBase
     {
         private readonly BlueFlameHotelContext _hotel;
-        private readonly IHotel
+        private readonly IHotel context;
 
         public RoomsController(BlueFlameHotelContext context) 
         {
             _hotel = context;
+                       
         }
 
         // GET: api/Rooms
@@ -125,7 +126,7 @@ namespace BlueFlameHotel.Controllers
 
             try
             {
-                newRA = _hotel.RoomAmenities.Add(new RoomAmenities { Amenities = amenities, RoomsID = roomID }).Entity;
+                newRA = _hotel.RoomAmenities.Add(new RoomAmenities { RoomsID = roomID }).Entity;
             }
             catch (Exception e)
             {
