@@ -27,16 +27,17 @@ namespace BlueFlameHotel.Controllers
 
         // GET: api/Hotels
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hotel>>> GetHotel()
+        public async Task<IEnumerable<Hotel>> GetHotel()
         {
-            return await _hotel.GetHotel();
+            var result = await _hotel.GetHotel();
+            return result;
         }
 
         // GET: api/Hotels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Hotel>> GetHotel(int id)
         {
-            return await  _hotel.GetHotel(id);
+            return await _hotel.GetHotel(id);
         }
 
         // PUT: api/Hotels/5

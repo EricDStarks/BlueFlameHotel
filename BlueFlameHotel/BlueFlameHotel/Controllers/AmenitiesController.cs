@@ -25,22 +25,22 @@ namespace BlueFlameHotel.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Amenities>>> GetAmenities_1()
         {
-          if (_context.Amenities_1 == null)
+          if (_context.Amenities == null)
           {
               return NotFound();
           }
-            return await _context.Amenities_1.ToListAsync();
+            return await _context.Amenities.ToListAsync();
         }
 
         // GET: api/Amenities/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Amenities>> GetAmenities(int id)
         {
-          if (_context.Amenities_1 == null)
+          if (_context.Amenities == null)
           {
               return NotFound();
           }
-            var amenities = await _context.Amenities_1.FindAsync(id);
+            var amenities = await _context.Amenities.FindAsync(id);
 
             if (amenities == null)
             {
@@ -89,11 +89,11 @@ namespace BlueFlameHotel.Controllers
         //Making new amenities
         public async Task<ActionResult<Amenities>> PostAmenities(Amenities amenities)
         {
-          if (_context.Amenities_1 == null)
+          if (_context.Amenities == null)
           {
               return Problem("Entity set 'BlueFlameHotelContext.Amenities_1'  is null.");
           }
-            _context.Amenities_1.Add(amenities);
+            _context.Amenities.Add(amenities);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAmenities", new { id = amenities.ID }, amenities);
@@ -103,17 +103,17 @@ namespace BlueFlameHotel.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAmenities(int id)
         {
-            if (_context.Amenities_1 == null)
+            if (_context.Amenities == null)
             {
                 return NotFound();
             }
-            var amenities = await _context.Amenities_1.FindAsync(id);
+            var amenities = await _context.Amenities.FindAsync(id);
             if (amenities == null)
             {
                 return NotFound();
             }
 
-            _context.Amenities_1.Remove(amenities);
+            _context.Amenities.Remove(amenities);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -121,7 +121,7 @@ namespace BlueFlameHotel.Controllers
 
         private bool AmenitiesExists(int id)
         {
-            return (_context.Amenities_1?.Any(e => e.ID == id)).GetValueOrDefault();
+            return (_context.Amenities?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

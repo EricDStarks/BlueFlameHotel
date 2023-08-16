@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlueFlameHotel.Models
 {
@@ -13,10 +14,9 @@ namespace BlueFlameHotel.Models
         [Required]  
         public int Layout { get; set; }
 
-        [Required]
         public List<HotelRoom> HotelRooms { get; set; }
 
-        [Required]
-        public List<Amenities> Amenities { get; set; }  
+        [NotMapped]
+        public List<RoomAmenities> RoomAmenities { get; set; }  
     }
 }

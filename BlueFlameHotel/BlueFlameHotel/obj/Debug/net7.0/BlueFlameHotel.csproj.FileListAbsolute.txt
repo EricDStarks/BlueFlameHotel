@@ -246,3 +246,14 @@ C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\Blue
 C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\obj\Debug\net7.0\BlueFlameHotel.csproj.CopyComplete
+C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\System.Net.Http.Formatting.dll
+C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\System.Web.Http.dll
+C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\System.Web.Http.WebHost.dll
+C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\Microsoft.Web.Infrastructure.dll
+C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\Swashbuckle.Core.dll
+C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\WebActivatorEx.dll
+C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\obj\Debug\net7.0\BlueFlameHotel.MvcApplicationPartsAssemblyInfo.cs
