@@ -257,3 +257,4 @@ C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\Blue
 C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\Swashbuckle.Core.dll
 C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\WebActivatorEx.dll
 C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\obj\Debug\net7.0\BlueFlameHotel.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Student-36\OneDrive\Desktop\Projects\BlueFlameHotel\BlueFlameHotel\BlueFlameHotel\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
