@@ -3,10 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.VisualBasic;
 using System.Security.Cryptography.Xml;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace BlueFlameHotel.Data
 {
-    public class BlueFlameHotelContext: DbContext
+    public class BlueFlameHotelContext: IdentityDbContext
     {
         public DbSet<Amenities> Amenities { get; set; }
         public DbSet<RoomAmenities> RoomAmenities { get; set; }
@@ -19,6 +20,8 @@ namespace BlueFlameHotel.Data
 
         }
 
+        public DbSet<BlueFlameHotel.Models.Hotel> Hotel { get; set; } = default!;
+
         protected override void  OnModelCreating(ModelBuilder modelBuilder)
         {
             Table of ;
@@ -29,6 +32,8 @@ namespace BlueFlameHotel.Data
             Reference Tables;
             modelBuilder.Entity<RoomAmenities>().HasData(new RoomAmenities { ID = 1, AmenityID = 1, RoomsID = 1 });
             modelBuilder.Entity<HotelRoom>().HasData(new HotelRoom { ID = 1, HotelID =1, RoomID = 1, Price = 189.99 });
+
+            base.OnModelCreating(modelBuilder);
         }
 
 

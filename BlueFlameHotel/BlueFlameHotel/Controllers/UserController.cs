@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using BlueFlameHotel.Models.Services;
 using BlueFlameHotel.Models;
+using BlueFlameHotel.Data;
 
 namespace BlueFlameHotel.Controllers
 {
@@ -93,5 +94,6 @@ namespace BlueFlameHotel.Controllers
                 UserName = user.UserName
             };
         }
+   
     }
 }
