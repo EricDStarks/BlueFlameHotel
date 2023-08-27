@@ -17,7 +17,7 @@ namespace BlueFlameHotel.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.9")
+                .HasAnnotation("ProductVersion", "7.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -52,6 +52,13 @@ namespace BlueFlameHotel.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Amenities");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "A/C"
+                        });
                 });
 
             modelBuilder.Entity("BlueFlameHotel.Models.Hotel", b =>
@@ -84,7 +91,18 @@ namespace BlueFlameHotel.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Hotel");
+                    b.ToTable("BlueFlameHotel");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Address = "123 Sesame Street",
+                            City = "Houston",
+                            Name = "Blue Flame Hotel",
+                            Phone = "281-330-8004",
+                            State = "TX"
+                        });
                 });
 
             modelBuilder.Entity("BlueFlameHotel.Models.HotelRoom", b =>
@@ -111,6 +129,15 @@ namespace BlueFlameHotel.Migrations
                     b.HasIndex("RoomID");
 
                     b.ToTable("HotelRooms");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            HotelID = 1,
+                            Price = 189.99000000000001,
+                            RoomID = 1
+                        });
                 });
 
             modelBuilder.Entity("BlueFlameHotel.Models.Room", b =>
@@ -136,6 +163,26 @@ namespace BlueFlameHotel.Migrations
                     b.HasIndex("RoomAmenitiesID");
 
                     b.ToTable("Rooms");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Layout = 0,
+                            Name = "Basic Room"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Layout = 1,
+                            Name = "Basic Single Room"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Layout = 2,
+                            Name = "Basic Double Room"
+                        });
                 });
 
             modelBuilder.Entity("BlueFlameHotel.Models.RoomAmenities", b =>
@@ -155,6 +202,14 @@ namespace BlueFlameHotel.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("RoomAmenities");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            AmenityID = 1,
+                            RoomsID = 1
+                        });
                 });
 
             modelBuilder.Entity("AmenitiesRoomAmenities", b =>

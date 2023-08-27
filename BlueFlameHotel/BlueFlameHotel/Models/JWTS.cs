@@ -19,17 +19,18 @@ namespace BlueFlameHotel.Models
             configuration = config;
             //signInManager = manager;​
         }
-    // Validate that our "secrets" are actually secrets and that they match
-    // This will be used by the validator
-    public static TokenValidationParameters GetValidationParameters(IConfiguration configuration)
+        // Validate that our "secrets" are actually secrets and that they match
+        // This will be used by the validator
+        public static TokenValidationParameters GetValidationParameters(IConfiguration configuration)
         {
             return new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
                 // This Is Our main goal: Make sure the security key, which comes from configuration is valid
                 IssuerSigningKey = GetSecurityKey(configuration),
-            // For simplifying testing
-            ValidateIssuer = false,
+
+                // For simplifying testing
+                ValidateIssuer = false,
                 ValidateAudience = false,
             };
         }
@@ -40,19 +41,19 @@ namespace BlueFlameHotel.Models
             var secretBytes = Encoding.UTF8.GetBytes(secret);
             return new SymmetricSecurityKey(secretBytes);
         }
-    public async Task<string> GetToken(ApplicationUser user, TimeSpan expiresIn)
+        public async Task<string> GetToken(ApplicationUser user, TimeSpan expiresIn)
         {
             var principal = await signInManager.CreateUserPrincipalAsync(user);
             if (principal == null) { return null; }
-            
-      var signingKey = GetSecurityKey(configuration);
+
+            var signingKey = GetSecurityKey(configuration);
             var token = new JwtSecurityToken(
               expires: DateTime.UtcNow + expiresIn,
               signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
               claims: principal.Claims
              );
-            
-      return new JwtSecurityTokenHandler().WriteToken(token);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

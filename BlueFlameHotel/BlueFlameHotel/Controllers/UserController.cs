@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
@@ -8,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using BlueFlameHotel.Models.Services;
+using BlueFlameHotel.Models;
+using BlueFlameHotel.Data;
 
 namespace BlueFlameHotel.Controllers
 {
@@ -15,8 +18,8 @@ namespace BlueFlameHotel.Controllers
     public class UsersController : ControllerBase
     {
         private UserManager<ApplicationUser> userManager;
-        private JWTS tokenService;
-        public UsersController(UserManager<ApplicationUser> manager, JWTS _tokenService)
+        private JwtTokenService tokenService;
+        public UsersController(UserManager<ApplicationUser> manager, JwtTokenService _tokenService)
         {
             userManager = manager;
             tokenService = _tokenService;
@@ -65,13 +68,13 @@ namespace BlueFlameHotel.Controllers
         [HttpPost("Login")]
         public async Task<ActionResult<ApplicationUser>> Login(ApplicationUser data)
         {
-            var user = await userManager.FindByNameAsync(data.Username);
+            var user = await userManager.FindByNameAsync(data.UserName);
             if (await userManager.CheckPasswordAsync(user, data.Password))
             {
                 return new ApplicationUser()
                 {
                     Id = user.Id,
-                    Username = user.UserName,
+                    UserName = user.UserName,
                 };
             }
             if (user == null)
@@ -91,5 +94,6 @@ namespace BlueFlameHotel.Controllers
                 UserName = user.UserName
             };
         }
+   
     }
 }

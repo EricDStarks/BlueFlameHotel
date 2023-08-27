@@ -17,7 +17,7 @@ namespace BlueFlameHotel.Models
 
      
 
-        public List<Room> Rooms { get; set; }
-        public List<Amenities> Amenity { get; set; }
+        public List<Room>? Rooms { get; set; }
+        public List<Amenities>? Amenity { get; set; }
     }
 }

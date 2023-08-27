@@ -14,9 +14,9 @@ namespace BlueFlameHotel.Models
         [Required]  
         public int Layout { get; set; }
 
-        public List<HotelRoom> HotelRooms { get; set; }
+        public List<HotelRoom>? HotelRooms { get; set; }
 
         [NotMapped]
-        public List<RoomAmenities> RoomAmenities { get; set; }  
+        public List<RoomAmenities>? RoomAmenities { get; set; }  
     }
 }
